@@ -1,12 +1,15 @@
 puts "START APPLE TEST"
 
 apple = 1
+remain = 1
 
 if apple > 1
   puts "BIG APPLE"
 else
   puts "SMALL APPLE"
-  apple = apple + 1
+  if remain >= 1
+    apple = apple + 1
+  end
 end
 
 puts "APPLE NOW: "
