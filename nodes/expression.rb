@@ -1,4 +1,4 @@
-# 5compiler
+# frozen_string_literal: true
 
 module C5
   module Node
@@ -6,15 +6,20 @@ module C5
     class Expression < Base
       def initialize(tokens)
         @nodes = []
-        @assignments = []
+        @assignment = nil
 
         super
+      end
+
+      def pretty
+        return @assignment.pretty unless @assignment.nil?
+        @nodes.join(' ')
       end
 
       def setup
         loop do
           @nodes << t.next
-          break @assignments << Assignment.new(@nodes.pop, t) if assign?
+          break @assignment = Assignment.new(@nodes.pop, t) if assign?
           break t.next if t.peek.linefeed?
         end
       end
@@ -43,9 +48,7 @@ module C5
       end
 
       def do_assignment(vm)
-        @assignments.each do |node|
-          node.execute(vm)
-        end
+        @assignment&.execute(vm)
       end
 
       def pick_value(nodes, vm)

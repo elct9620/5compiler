@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # 5compiler
 
 require './nodes/base'
@@ -10,10 +11,11 @@ require './nodes/context'
 module C5
   # :nodoc:
   class Parser
-    attr_reader :ast
+    attr_reader :ast, :context
 
     def initialize(tokenizer)
       @tokenizer = tokenizer
+      @context = nil
       @ast = []
 
       parse
@@ -23,7 +25,8 @@ module C5
 
     def parse
       tokens = @tokenizer.to_enum
-      @ast = Node::Context.new(tokens).ast
+      @context = Node::Context.new(tokens)
+      @ast = context.ast
     end
   end
 end

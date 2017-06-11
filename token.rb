@@ -1,4 +1,4 @@
-# 5compiler
+# frozen_string_literal: true
 
 module C5
   # :nodoc:
@@ -15,6 +15,11 @@ module C5
     end
 
     alias to_s body
+
+    def inspect
+      return @type if linefeed?
+      "#{@type} (#{@body})"
+    end
 
     def value
       return unless value?

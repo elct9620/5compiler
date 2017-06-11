@@ -1,12 +1,12 @@
-# 5compiler
+# frozen_string_literal: true
 
 require 'awesome_print'
 require './compiler'
 require './vm'
 
-GREEN = "\033[0;32m".freeze
-RED = "\033[0;31m".freeze
-NC = "\033[0m".freeze
+GREEN = "\033[0;32m"
+RED = "\033[0;31m"
+NC = "\033[0m"
 
 EXAMPLES = Dir['examples/*.5c']
 
@@ -49,7 +49,7 @@ task :ast do
   compile do |example, script, compiler|
     filename example
     source script
-    ap compiler.ast
+    ap compiler.parser.context.pretty
   end
 end
 

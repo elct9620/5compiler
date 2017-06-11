@@ -1,4 +1,4 @@
-# 5compiler
+# frozen_string_literal: true
 
 module C5
   # :nodoc:

@@ -1,4 +1,4 @@
-# 5compiler
+# frozen_string_literal: true
 
 require './lexer'
 require './token'
@@ -32,7 +32,7 @@ module C5
 
     def tokenize(word)
       MATCH_RULES.each do |type, rule|
-        return Token.new(type, word) if word =~ rule
+        return Token.new(type, word) if word.match?(rule)
       end
 
       Token.new(:literal, word)

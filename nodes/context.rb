@@ -1,4 +1,4 @@
-# 5compiler
+# frozen_string_literal: true
 
 module C5
   module Node
@@ -11,15 +11,18 @@ module C5
         super
       end
 
+      def pretty
+        Hash[@ast.map(&:name).zip(@ast.map(&:pretty))]
+      end
+
       # rubocop:disable Metrics/AbcSize
       def setup
         loop do
-          break if t.peek.else?
+          break if t.peek.else? || t.peek.exit?
           next t.next if t.peek.linefeed?
           next @ast << Node::Function.new(t) if t.peek.fn?
           next @ast << Node::Condition.new(t) if t.peek.if?
           @ast << Node::Expression.new(t)
-          break if t.peek.exit?
         end
       end
       # rubocop:enable Metrics/AbcSize

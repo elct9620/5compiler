@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # 5compiler
 
 require './lexer'

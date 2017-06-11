@@ -1,4 +1,4 @@
-# 5compiler
+# frozen_string_literal: true
 
 module C5
   module Node
@@ -10,6 +10,15 @@ module C5
         @tokens = tokens
 
         setup
+      end
+
+      # Awesome Print
+      def pretty
+        []
+      end
+
+      def name
+        "#{self.class.name.split('::').last}(#{object_id})"
       end
 
       def execute(_vm)

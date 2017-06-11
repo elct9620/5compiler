@@ -1,4 +1,4 @@
-# 5compiler
+# frozen_string_literal: true
 
 module C5
   module Node
@@ -9,6 +9,13 @@ module C5
 
         @name = tokens.next
         @expression = Expression.new(tokens)
+      end
+
+      def pretty
+        {
+          function: @name.to_s,
+          params: [@expression.pretty]
+        }
       end
 
       def setup; end

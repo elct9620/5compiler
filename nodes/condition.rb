@@ -1,4 +1,4 @@
-# 5compiler
+# frozen_string_literal: true
 
 module C5
   module Node
@@ -10,6 +10,14 @@ module C5
         @else = nil
         @expression = Expression.new(tokens)
         super
+      end
+
+      def pretty
+        {
+          condition: @expression.pretty,
+          then: @do&.pretty,
+          else: @else&.pretty
+        }
       end
 
       # rubocop:disable Metrics/AbcSize
@@ -29,7 +37,7 @@ module C5
 
       def execute(vm)
         return @do.execute(vm) if @expression.execute(vm)
-        @else.execute(vm) unless @else.nil?
+        @else&.execute(vm)
       end
     end
   end
