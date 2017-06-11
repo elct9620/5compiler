@@ -1,0 +1,6 @@
+1 + 1
+puts 1 + 1
+puts 1 - 1
+puts 1 * 1
+puts 1 / 1
+puts "I have " + "1" + " apple"

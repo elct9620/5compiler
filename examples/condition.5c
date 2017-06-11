@@ -1,0 +1,14 @@
+puts "START APPLE TEST"
+
+apple = 1
+
+if apple > 1
+  puts "BIG APPLE"
+else
+  puts "SMALL APPLE"
+  apple = apple + 1
+end
+
+puts "APPLE NOW: "
+puts apple
+puts "END APPLE TEST"
