@@ -22,7 +22,9 @@ module C5
 
       # To most simple example, direct call "puts" method in Ruby
       def execute(vm)
-        Kernel.send @name.to_s, @expression.execute(vm)
+        value = @expression.execute(vm)
+        Kernel.send @name.to_s, value
+        value
       end
     end
   end

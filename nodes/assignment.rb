@@ -23,6 +23,7 @@ module C5
 
       def execute(vm)
         vm.set @id.body, @expression.execute(vm)
+        vm.get @id.body
       end
     end
   end

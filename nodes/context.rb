@@ -28,9 +28,11 @@ module C5
       # rubocop:enable Metrics/AbcSize
 
       def execute(vm)
+        result = nil
         @ast.each do |node|
-          node.execute(vm)
+          result = node.execute(vm)
         end
+        result
       end
     end
   end

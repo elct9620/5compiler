@@ -3,9 +3,8 @@
 module C5
   # :nodoc:
   class VM
-    def initialize(ast)
+    def initialize
       @variables = {}
-      @ast = ast
     end
 
     def has?(id)
@@ -20,10 +19,12 @@ module C5
       @variables[id] = value
     end
 
-    def execute
-      @ast.each do |node|
-        node.execute(self)
+    def execute(ast)
+      result = nil
+      ast.each do |node|
+        result = node.execute(self)
       end
+      result
     end
   end
 end

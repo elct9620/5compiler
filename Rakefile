@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 require 'awesome_print'
+require 'mrdialog'
 require './compiler'
 require './vm'
+require './repl'
 
 GREEN = "\033[0;32m"
 RED = "\033[0;31m"
@@ -27,8 +29,14 @@ def source(script)
   puts "#{RED}#{script}#{NC}"
 end
 
-task default: :ast
+task default: :interactive
 
+desc 'Interactive mode'
+task :interactive do
+  C5::Repl.new.start
+end
+
+desc 'Show words compiler scanned'
 task :words do
   compile do |example, script, compiler|
     filename example
@@ -37,6 +45,7 @@ task :words do
   end
 end
 
+desc 'Show tokens compiler marked'
 task :tokens do
   compile do |example, script, compiler|
     filename example
@@ -45,6 +54,7 @@ task :tokens do
   end
 end
 
+desc 'Show ast compiler converted'
 task :ast do
   compile do |example, script, compiler|
     filename example
@@ -53,10 +63,11 @@ task :ast do
   end
 end
 
+desc 'Execute all examples'
 task :execute do
   compile do |example, script, compiler|
     filename example
     source script
-    C5::VM.new(compiler.ast).execute
+    C5::VM.new.execute(compiler.ast)
   end
 end

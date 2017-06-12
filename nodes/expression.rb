@@ -26,7 +26,7 @@ module C5
 
       # Expression always chain call method
       def execute(vm)
-        do_assignment(vm)
+        return do_assignment(vm) if @assignment
 
         nodes = @nodes.to_enum
         result = pick_value(nodes, vm)
